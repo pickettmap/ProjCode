@@ -14,14 +14,7 @@ def authenticateUsernamePassword(userCursor,userInput):
     print(userCursor.fetchone())
     pdb.set_trace()
     
-
-def openSQLConnection():
-    conn = psycopg2.connect("dbname=lab6 user=postgres password='user'\
-                            host='localhost'")
-    cur = conn.cursor()
-    return cur,conn
-    
-databaseCursor,databaseConnection = openSQLConnection()
+userImageCursor,userImageConnection = openImageSQL()
 
 databaseCursor.execute("select * from course")
 print(databaseCursor.fetchone())
