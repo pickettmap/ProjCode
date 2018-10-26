@@ -1,0 +1,90 @@
+<html>
+<head>
+	<title>
+		Login
+	</title>
+
+	<style type="text/css">
+		body
+		{
+			background-image: linear-gradient(180deg, #b4ec51 0%, #429321 100%);
+		}
+
+		label
+		{
+			color: #6f6f6f;
+			font-family: "SF Pro Text";
+			font-size: 28px;
+			font-weight: 400;
+		}
+
+		.login
+		{
+			height: 40%;
+			width: 25%;
+			border: 25px solid #42621f;
+			position: fixed;
+  			top: 50%;
+  			left: 50%;
+  			transform: translate(-50%, -50%);
+  			background-color: #d8d8d8;
+		}
+
+		.fields
+		{
+			position: fixed;
+  			top: 65%;
+  			left: 50%;
+  			transform: translate(-50%, -50%);
+		}
+
+		.title
+		{
+			position: fixed;
+			top:15%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			width: 206px;
+			height: 83px;
+			color: #6f6f6f;
+			font-family: "SF Pro Text";
+			font-size: 70px;
+			font-weight: 400;
+		}
+
+		.sub
+		{
+			/*width: 50%;
+			height: 10%;*/
+			width: 171px;
+			height: 48px;
+			border-radius: 24px;
+			background-image: linear-gradient(270deg, #8dd7ff 0%, #54aeff 100%);
+		}
+	</style>
+</head>
+
+<body>
+	<fieldset class="login">
+		<div class="title">TagIm</div>
+		<form class="fields">
+			
+			<div>
+				<label for="username"> Username:</label>
+			</br>
+				<input type="text" id="username" name="un" pattern="[A-Za-z\s]+" maxlength="10" minlength="3" placeholder="username" title="Must only use letters" required/>
+			</div>
+
+			<div>
+				<label for="password">Password:</label>
+			</br>
+				<input type="password" id="password" name="pw" pattern=".{4,}" title="Must be at least 4 characters" required/>
+			</div>
+			</br>
+			<div>
+				<input type="submit" class="sub" value="Login" />
+			</div>
+		</form>
+	</fieldset>
+</body>
+</html>
