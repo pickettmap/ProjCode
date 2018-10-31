@@ -8,14 +8,22 @@ import os
 import psycopg2
 import pdb
 
-#DATABASE_URL = 'postgres://arefdyrarburam:ee3159df93a3d1dda07edfd5c47f23801ac564\
-#f372b36ee4df0dc6816e2b0d27@ec2-54-235-73-241.compute-1.amazonaws.com:5432/daqi\
-#oekmq4n086'
+def databaseConnect():
+    #### Define database to connect with
+    
+    #### Heroku database link
+    #DATABASE_URL = 'postgres://arefdyrarburam:ee3159df93a3d1dda07edfd5c47f23801ac564\
+    #f372b36ee4df0dc6816e2b0d27@ec2-54-235-73-241.compute-1.amazonaws.com:5432/daqi\
+    #oekmq4n086'
+    
+    DATABASE_URL = os.environ['DATABASE_URL']
+    
+    #### Open connection and interaction cursor
+    conn = psycopg2.connect(DATABASE_URL,sslmode='require')
+    cur = conn.cursor()
+    return conn,cur
 
-DATABASE_URL = os.environ['DATABASE_URL']
-
-conn = psycopg2.connect(DATABASE_URL,sslmode='require')
-cur = conn.cursor()
+conn,cur = databaseConnect()
 
 #### Example of pulling data from table
 #cur.execute("select * from users")
