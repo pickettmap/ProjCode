@@ -48,7 +48,9 @@ def databaseCreation():
     cur.execute("create table PicturesTags(picID int references Pictures (picID) on update cascade, "
     	"tagID int references Tags (tagID) on update cascade);")
     
-def userAuthentication(username,password):
+def userAuthentication(username,password,cur,conn):
+    cur.execute("select * from users where usern=%s",[username])
+    userData = cur.fetchall()
     pdb.set_trace()
 # create the application object
 app = Flask(__name__)
@@ -58,10 +60,10 @@ app = Flask(__name__)
 def login():
     receivedUsername = request.args.get('username')
     receivedPassword = request.args.get('password')
-    if receivedUsername != None:
+    if receivedUsername != None and receivedPassword != None:
         print("Received Username: ", receivedUsername)
         print("Received Password: ", receivedPassword)
-        userAuthentication(receivedUsername,receivedPassword)
+        userAuthentication(receivedUsername,receivedPassword,cur,conn)
     return render_template('Login.html')
 
 @app.route('/Login')
