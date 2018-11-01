@@ -68,17 +68,17 @@
 	<fieldset class="login">
 		<div class="title">TagIm</div>
 		<form class="fields">
-			
+			<form method="POST" action="">
 			<div>
 				<label for="username"> Username:</label>
 			</br>
-				<input type="text" id="username" name="un" pattern="[A-Za-z\s]+" maxlength="10" minlength="3" placeholder="username" title="Must only use letters" required/>
+				<input type="text" placeholder="username" name="username" id="username" value= "{{request.form.username}}"  pattern="[A-Za-z\s]+" maxlength="10" minlength="3" title="Must only use letters" required/>
 			</div>
 
 			<div>
 				<label for="password">Password:</label>
 			</br>
-				<input type="password" id="password" name="pw" pattern=".{4,}" title="Must be at least 4 characters" required/>
+				<input type="password" id="password" value= "{{request.form.password}}" name="password" pattern=".{4,}" title="Must be at least 4 characters" required/>
 			</div>
 			</br>
 			<div>
