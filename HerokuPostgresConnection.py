@@ -55,10 +55,9 @@ def userAuthentication(username,password,cur,conn):
         print("Username not found.")
         return False
     if userData[0][1] == username and userData[0][2] == password:
-        print("Username found.")
-        pdb.set_trace()
+        print("User authenticated. Logging into user page...")
         return True
-    pdb.set_trace()
+    print("Incorrect password.")
 # create the application object
 app = Flask(__name__)
 
