@@ -51,6 +51,13 @@ def databaseCreation():
 def userAuthentication(username,password,cur,conn):
     cur.execute("select * from users where usern=%s",[username])
     userData = cur.fetchall()
+    if userData == []:
+        print("Username not found.")
+        return False
+    if userData[0][1] == username and userData[0][2] == password:
+        print("Username found.")
+        pdb.set_trace()
+        return True
     pdb.set_trace()
 # create the application object
 app = Flask(__name__)
@@ -63,7 +70,10 @@ def login():
     if receivedUsername != None and receivedPassword != None:
         print("Received Username: ", receivedUsername)
         print("Received Password: ", receivedPassword)
-        userAuthentication(receivedUsername,receivedPassword,cur,conn)
+        userCheck = userAuthentication(receivedUsername,receivedPassword,cur,conn)
+        if userCheck == True:
+            print('Login accepted. Accessing image upload page...')
+            return render_template('ImageUpload.html')
     return render_template('Login.html')
 
 @app.route('/Login')
