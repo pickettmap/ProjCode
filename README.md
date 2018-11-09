@@ -1,2 +1,0 @@
-# ProjCode
-Project code/components

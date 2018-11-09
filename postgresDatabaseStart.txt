@@ -1,9 +1,0 @@
-create table Users(userID serial primary key, usern varchar(30) not null, password varchar(30) not null);
-insert into Users(usern, password) values ('user','123');
-
-create table Pictures(picID serial primary key, picName varchar(50) not null);
-
-create table Tags(tagID serial primary key, tagName varchar(50) not null);
-
-create table PicturesTags(picID int references Pictures (picID) on update cascade, 
-	tagID int references Tags (tagID) on update cascade);
