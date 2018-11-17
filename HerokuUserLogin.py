@@ -10,7 +10,7 @@ import urllib.parse as urlparse
 import pdb
 
 from flask import Flask, render_template, redirect, url_for, request
-from flask.ext.sqlalchemy import SQLAlchemy
+#from flask.ext.sqlalchemy import SQLAlchemy
 
 
 ########################################################
@@ -39,7 +39,7 @@ def databaseCreation():
 ###### Step 1: Connect with Heroku database
 def databaseConnect():
     #### Heroku database link
-    os.environ['DATABASE_URL'] = 'postgres://arefdyrarburam:ee3159df93a3d1dda07edfd5c47f23801ac564f372b36ee4df0dc6816e2b0d27@ec2-54-235-73-241.compute-1.amazonaws.com:5432/daqioekmq4n086'
+    #os.environ['DATABASE_URL'] = 'postgres://arefdyrarburam:ee3159df93a3d1dda07edfd5c47f23801ac564f372b36ee4df0dc6816e2b0d27@ec2-54-235-73-241.compute-1.amazonaws.com:5432/daqioekmq4n086'
     url = urlparse.urlparse(os.environ['DATABASE_URL'])
     dbname = url.path[1:]
     user = url.username
@@ -71,6 +71,9 @@ app = Flask(__name__)
 ##app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/Login'
 @app.route('/', methods=['GET', 'POST'])
 def login():
+    print('yo')
+    print(request.args.get('username'))
+    print(request.args)
     receivedUsername = request.args.get('username')
     receivedPassword = request.args.get('password')
     if receivedUsername != None and receivedPassword != None:
