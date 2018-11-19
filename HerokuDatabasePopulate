@@ -1,0 +1,27 @@
+"""
+Andrea Martorano
+
+Script for adding base info to database
+"""
+
+import HerokuUserLogin
+
+if __name__ == '__main__':
+    conn,cur = databaseConnect()
+
+    conn.set_session(autocommit=True)
+
+    cur.executemany("insert into Users (userID,userName,password) values (%s,%s,%s);",
+                (DEFAULT,'user1','123'),(DEFAULT,'user2','password111'),
+                (DEFAULT,'user3','CUBoulder'))
+
+    cur.executemany("insert into Pictures (picID,picName,userID) values (%s,%s,%s);",
+                (DEFAULT,'jpeg.jpeg','1'),(DEFAULT,'mom.jpeg','1'),(DEFAULT,'001.jpeg','1'),
+                (DEFAULT,'002.jpeg','2'),(DEFAULT,'003.jpeg','2'),(DEFAULT,'004.jpeg','2'),
+                (DEFAULT,'005.jpeg','3'),(DEFAULT,'006.jpeg','3'),(DEFAULT,'CU.jpeg','3'))
+
+    cur.executemany("insert into Tags (TagID, TagName) values (%s,%s);",(DEFAULT,'mom'),
+                (DEFAULT,'selfie'),(DEFAULT,'me'),(DEFAULT,'Chip'))
+
+    cur.executemany("insert into PicturesTags (picID,tagID) values (%s,%s);",(1,3),
+                (1,4),(2,2),(2,1),(3,3),(4,1),(5,3),(6,1),(6,2),(7,4),(8,3),(9,2))
