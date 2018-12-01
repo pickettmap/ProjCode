@@ -1,4 +1,4 @@
-create table Users(userID serial primary key, userName varchar(30) not null, password varchar(30) not null);
+create table Users(userID serial primary key, userName varchar(30) not null, password varchar(100) not null);
 insert into Users (userID,userName,password) values(DEFAULT,'user1','123'),(DEFAULT,'user2','password111'),(DEFAULT,'user3','CUBoulder');
 
 create table Pictures(picID serial primary key, picName varchar(50) not null, userID int references Users (userID) on update cascade);
