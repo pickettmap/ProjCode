@@ -1,0 +1,19 @@
+.jumbotron
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	border: 1px solid black;
+}
+
+.jumbotron-content h1
+{
+	text-align: center;
+	font-size: 3em;
+	margin-bottom: 0.5em;
+}
+
+.jumbotron .btn {
+  margin: 0 5%;
+}
