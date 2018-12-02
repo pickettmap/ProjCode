@@ -1,3 +1,5 @@
+create database tagim;
+\c tagim
 create table Users(userID serial primary key, userName varchar(30) not null, password varchar(30) not null);
 insert into Users(userName, password) values ('user','123');
 
