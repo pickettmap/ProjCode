@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, url_for
 import psycopg2
 
 #Connect to database
@@ -8,35 +8,58 @@ cur = conn.cursor()
 #Setup flask
 app = Flask(__name__)
 
+#Key used for encrypting session data
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
 #Check if user is in database, True if username already exists
-def validateUser(username):
+def existingUser(username):
 	cur.execute("SELECT * FROM users WHERE username = %s;", [username])
 	if(len(cur.fetchall()) > 0):
 		return True
 	return False
 
-#Adds user entry
-def addUser(username, password):
-	cur.execute("INSERT INTO users (username, password) VALUES (%s, %s);", [username, password])
-	conn.commit()
-
 #Home page
 @app.route("/")
-def hello():
+def home():
     return "Hello World!"
 
 #Login page
-@app.route("/login", methods = ["POST", "GET"])
+@app.route("/login", methods = ["POST"])
 def login():
-	if(request.method == "GET"):
-		if(len(request.args) > 0):
-			username = request.args.get("username")
-			password = request.args.get("password")
+	if(request.method == "POST"):
+		username = request.form("username")
+		password = request.form("password")
 
-			#If the username doesn't exist, add the new account
-			if(validateUser(username) == False):
-				addUser(username, password)
+		#If the username doesn't exist, redirect to register
+		if(existingUser(username) == False):
+			return redirect(url_for("register"))
+		#If the username does exist, check the password and login
+		elif:
+			cur.execute("SELECT * FROM users WHERE username = %s;", [username])
+			info = cur.fetchone()
+			#If the passwords match
+			if(info[2] == password):
+				session["username"] = username
+				return redirect(url_for("home"))
+
 	return render_template("Login.html")
 
+@app.route("/register", methods = ["POST"])
+def register():
+	if(request.method == "POST"):
+		username = request.form("username")
+		password = request.form("password")
+
+		#If the username exists, return error
+		if(existingUser(username) == True):
+			pass
+		#If the username doesn't exist, register
+		elif:
+			cur.execute("INSERT INTO users (username, password) VALUES (%s, %s);", [username, password])
+			conn.commit()
+			session["username"] = username
+
+	return render_template("Register.html")
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug = True)
