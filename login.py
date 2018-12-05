@@ -24,41 +24,41 @@ def home():
     return "Hello World!"
 
 #Login page
-@app.route("/login", methods = ["POST"])
+@app.route("/login", methods = ["POST", "GET"])
 def login():
-	if(request.method == "POST"):
-		username = request.form("username")
-		password = request.form("password")
+	if(request.method == "GET"):
+		username = request.args.get("username")
+		password = request.args.get("password")
 
 		#If the username doesn't exist, return error
 		if(existingUser(username) == False):
-			pass
+			print("Hello")
 		#If the username does exist, check the password and login
-		elif:
+		else:
 			cur.execute("SELECT * FROM users WHERE username = %s;", [username])
 			info = cur.fetchone()
 			#If the passwords match
 			if(info[2] == password):
-				session["username"] = username
+				#session["username"] = username
 				return redirect(url_for("home"))
 
 	return render_template("Login.html")
 
 #Register page
-@app.route("/register", methods = ["POST"])
+@app.route("/register", methods = ["POST", "GET"])
 def register():
-	if(request.method == "POST"):
-		username = request.form("username")
-		password = request.form("password")
+	if(request.method == "GET"):
+		username = request.args.get("username")
+		password = request.args.get("password")
 
 		#If the username exists, return error
 		if(existingUser(username) == True):
-			pass
+			print("Hello")
 		#If the username doesn't exist, register
-		elif:
+		else:
 			cur.execute("INSERT INTO users (username, password) VALUES (%s, %s);", [username, password])
 			conn.commit()
-			session["username"] = username
+			#session["username"] = username
 			return redirect(url_for("home"))
 
 	return render_template("Register.html")
