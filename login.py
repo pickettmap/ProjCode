@@ -11,7 +11,7 @@ app = Flask(__name__)
 #Key used for encrypting session data
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
-#Check if user is in database, True if username already exists
+#Check if username is in database, True if username exists
 def existingUser(username):
 	cur.execute("SELECT * FROM users WHERE username = %s;", [username])
 	if(len(cur.fetchall()) > 0):
@@ -30,9 +30,9 @@ def login():
 		username = request.form("username")
 		password = request.form("password")
 
-		#If the username doesn't exist, redirect to register
+		#If the username doesn't exist, return error
 		if(existingUser(username) == False):
-			return redirect(url_for("register"))
+			pass
 		#If the username does exist, check the password and login
 		elif:
 			cur.execute("SELECT * FROM users WHERE username = %s;", [username])
@@ -44,6 +44,7 @@ def login():
 
 	return render_template("Login.html")
 
+#Register page
 @app.route("/register", methods = ["POST"])
 def register():
 	if(request.method == "POST"):
@@ -58,6 +59,7 @@ def register():
 			cur.execute("INSERT INTO users (username, password) VALUES (%s, %s);", [username, password])
 			conn.commit()
 			session["username"] = username
+			return redirect(url_for("home"))
 
 	return render_template("Register.html")
 
