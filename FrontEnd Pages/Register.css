@@ -28,13 +28,13 @@
 	width: 40%;
 }
 
-#loginbutton
+#registerbutton
 {
 	position: absolute;
 	left: 10%
 }
 
-#registerbutton
+#loginbutton
 {
 	position: absolute;
 	left: 65%;
