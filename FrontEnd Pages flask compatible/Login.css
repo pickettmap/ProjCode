@@ -1,0 +1,46 @@
+#backg
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+    background-image: linear-gradient(180deg, #FFD127 0%, #8D3503 100%);
+}
+#titletext
+{
+	text-align: center;
+	font-size: 10em;
+	font-family: "Marker Felt", "fantasy";
+	color: rgba(0, 0, 0, 0.5);
+}
+
+#boxtitle
+{
+	font-weight: bold;
+}
+
+#formbox
+{
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	border: 1px solid black;
+	width: 40%;
+}
+
+#loginbutton
+{
+	position: absolute;
+	left: 10%
+}
+
+#registerbutton
+{
+	position: absolute;
+	left: 65%;
+}
+#userlogin
+{
+	text-align: center;
+	font-size: 1em;
+}
