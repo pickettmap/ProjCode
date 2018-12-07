@@ -1,5 +1,6 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, session
 import psycopg2
+import os
 
 #Connect to database
 conn = psycopg2.connect("dbname = webdb user = postgres password = postgres")
@@ -7,9 +8,6 @@ cur = conn.cursor()
 
 #Setup flask
 app = Flask(__name__)
-
-#Key used for encrypting session data
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 #Check if username is in database, True if username exists
 def existingUser(username):
@@ -21,7 +19,8 @@ def existingUser(username):
 #Home page
 @app.route("/")
 def home():
-    return "Hello World!"
+	string = "Logged in as " + session["username"]
+	return string
 
 #Login page
 @app.route("/login", methods = ["POST", "GET"])
@@ -39,7 +38,7 @@ def login():
 			info = cur.fetchone()
 			#If the passwords match
 			if(info[2] == password):
-				#session["username"] = username
+				session["username"] = username
 				return redirect(url_for("home"))
 
 	return render_template("Login.html")
@@ -58,10 +57,12 @@ def register():
 		else:
 			cur.execute("INSERT INTO users (username, password) VALUES (%s, %s);", [username, password])
 			conn.commit()
-			#session["username"] = username
+			session["username"] = username
 			return redirect(url_for("home"))
 
 	return render_template("Register.html")
 
 if __name__ == "__main__":
-    app.run(debug = True)
+	#Key used for encrypting session data
+	app.secret_key = os.urandom(24)
+	app.run()
