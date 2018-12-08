@@ -3,12 +3,9 @@
 	height: 100%;
 	width: 160px;
 	position: fixed;
-	z-index: 1;
-	top: 0;
 	left: 0;
 	background-color: #111;
 	overflow-x: hidden;
-	padding-top: 20px; 
 }
 
 .sidenav h3
@@ -33,11 +30,7 @@
 #main 
 {
 	margin-left: 270px;
+	margin-top: 200px;
 	padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px)
-{
-	.sidenav {padding-top: 15px;}
-	.sidenav a {font-size: 18px;}
+	position: relative;
 }

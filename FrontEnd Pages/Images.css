@@ -9,7 +9,7 @@ body
 #currentpage
 {
 	/* -10 from button position (-10 = border size) */
-	position: absolute;
+	position: relative;
 	top: 145px;
 	left: 40px;
 
