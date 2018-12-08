@@ -20,7 +20,7 @@
 	float: left;
 	z-index: 1;
 	left: 0;
-	background-color: #111;
+	background-color: #C4C4C4;
 	overflow-x: hidden;
 	overflow-y:scroll;
 	padding-top: 20px;
@@ -28,22 +28,22 @@
 
 .sidenav h3
 {
-	color: #fff;
-	position: fixed;}
+	color: #111;
+	position: relative;
+}
 
 .sidenav a
 {
-	margin-top: 30px;
 	padding: 6px;
 	text-decoration: none;
 	font-size: 18px;
-	color: #818181;
+	color: #111;
 	display: block;
 }
 
 .sidenav a:hover
 {
-	color: #f1f1f1;
+	color: #8D3503;
 }
 
 #main 
