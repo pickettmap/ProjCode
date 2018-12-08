@@ -9,7 +9,7 @@ cur = conn.cursor()
 #Setup flask
 app = Flask(__name__)
 UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__))
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 #Check if username is in database, True if username exists
 def existingUser(username):
@@ -21,9 +21,9 @@ def existingUser(username):
 #Login page
 @app.route("/", methods = ["GET", "POST"])
 def login():
-	if(request.method == "GET"):
-		username = request.args.get("username")
-		password = request.args.get("password")
+	if(request.method == "POST"):
+		username = request.form("username")
+		password = request.form("password")
 
 		#If the username doesn't exist, return error
 		if(existingUser(username) == False):
@@ -43,8 +43,8 @@ def login():
 @app.route("/register", methods = ["GET", "POST"])
 def register():
 	if(request.method == "POST"):
-		username = request.args.get("username")
-		password = request.args.get("password")
+		username = request.form("username")
+		password = request.form("password")
 
 		#If the username exists, return error
 		if(existingUser(username) == True):
@@ -58,23 +58,49 @@ def register():
 
 	return render_template("Register.html")
 
+#Logout page
+@app.route("/logout")
+def logout():
+	session["username"] = ""
+	return redirect(url_for("login"))
+
 #Uploading the file to a static folder
-@app.route('/upload', methods = ['GET', 'POST'])
+@app.route("/upload", methods = ["GET", "POST"])
 def upload_file():
-  target = os.path.join(UPLOAD_FOLDER, 'static/')
+	#If user isn't signed in, redirect
+	if(session["username"] == ""):
+		return redirect(url_for("login"))
 
-  if not os.path.isdir(target):
-    os.mkdir(target)
+	#Get tags
+	if(request.method == "POST"):
+		tags = request.form("tags")
+		tags = tags.split(",")
 
-  for upload in request.files.getlist("file"):
-    filename = upload.filename
-    destination = "/".join([target,filename])
-    upload.save(destination)
+	target = os.path.join(UPLOAD_FOLDER, "static/")
 
-  return render_template("ImageDisplay.html", image_name = filename)
+	if not os.path.isdir(target):
+    	os.mkdir(target)
+
+  	for upload in request.files.getlist("file"):
+  		filename = upload.filename
+    	#Add the picname and return the id
+    	cur.execute("INSERT INTO pictures (picname, username) VALUES (%s, %s) RETURNING picid;", [filename, session["username"]])
+    	id = cur.fetchone()
+    	conn.commit()
+
+    	#For every tag insert with picid
+    	for tag in tags:
+    		cur.execute("INSERT INTO tags (picid, tag) VALUES (%s, %s);", [id, tag])
+    	conn.commit()
+
+    	#Save image
+    	destination = "/".join([target,filename])
+    	upload.save(destination)
+
+	return render_template("ImageDisplay.html", image_name = filename)
 
 #Location of the image
-@app.route('/upload/<filename>')
+@app.route("/upload/<filename>")
 def send_image(filename):
   return send_from_directory("static",filename)
 
