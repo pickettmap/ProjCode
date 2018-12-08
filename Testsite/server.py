@@ -3,7 +3,7 @@ import psycopg2
 import os
 
 #Connect to database
-conn = psycopg2.connect("host='localhost' dbname='webdb' user='postgres' password='postgres'")
+conn = psycopg2.connect("dbname='webdb' user='postgres' password='postgres'")
 cur = conn.cursor()
 
 #Setup flask
@@ -52,7 +52,7 @@ def login():
 			#If the passwords match
 			if(info[1] == password):
 				session["username"] = username
-				return redirect(url_for("/Images"))
+				return redirect(url_for("images"))
 			else:
 				return render_template("Login.html", error="Wrong password")
 
@@ -86,37 +86,39 @@ def logout():
 #Uploading the file to a static folder
 @app.route("/upload", methods = ["GET", "POST"])
 def upload_file():
-	#If user isn't signed in, redirect
-	if(session["username"] == ""):
-		return redirect(url_for("login"))
-
-	#Get tags
 	if(request.method == "POST"):
-		tags = request.form("tags")
+		#If user isn't signed in, redirect
+		if(session["username"] == ""):
+			return redirect(url_for("login"))
+
+		#Get tags
+		tags = request.form["tags"]
 		tags = tags.split(",")
 
-	target = os.path.join(UPLOAD_FOLDER, "static/")
+		target = os.path.join(UPLOAD_FOLDER, "static/")
+		print(target)
+		print(tags)
 
-	if not os.path.isdir(target):
-		os.mkdir(target)
+		if not os.path.isdir(target):
+			os.mkdir(target)
 
-  	for upload in request.files.getlist("file"):
-  		filename = upload.filename
-    	#Add the picname and return the id
-    	cur.execute("INSERT INTO pictures (picname, username) VALUES (%s, %s) RETURNING picid;", [filename, session["username"]])
-    	id = cur.fetchone()
-    	conn.commit()
+		for upload in request.files.getlist("file"):
+			filename = upload.filename
+			#Add the picname and return the id
+			cur.execute("INSERT INTO pictures (picname, username) VALUES (%s, %s) RETURNING picid;", [filename, session["username"]])
+			id = cur.fetchone()
+			conn.commit()
 
-    	#For every tag insert with picid
-    	for tag in tags:
-    		cur.execute("INSERT INTO tags (picid, tag) VALUES (%s, %s);", [id, tag])
-    	conn.commit()
+			#For every tag insert with picid
+			for tag in tags:
+				cur.execute("INSERT INTO tags (picid, tag) VALUES (%s, %s);", [id, tag])
+			conn.commit()
 
-    	#Save image
-    	destination = "/".join([target,filename])
-    	upload.save(destination)
+			#Save image
+			destination = "/".join([target,filename])
+			upload.save(destination)
 
-	return render_template("ImageDisplay.html", image_name = filename)
+	return render_template("Login.html")
 
 #Location of the image
 @app.route("/upload/<filename>")
