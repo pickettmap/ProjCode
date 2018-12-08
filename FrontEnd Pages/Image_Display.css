@@ -1,20 +1,39 @@
-.sidenav
+/*.sidenav
 {
 	height: 100%;
 	width: 160px;
 	position: fixed;
+	z-index: 1;
+	top: 0;
 	left: 0;
 	background-color: #111;
 	overflow-x: hidden;
+	padding-top: 20px; 
+}
+*/
+
+.sidenav
+{
+	width: 160px;
+	margin-top: 200px;
+	max-height: 800px;
+	float: left;
+	z-index: 1;
+	left: 0;
+	background-color: #111;
+	overflow-x: hidden;
+	overflow-y:scroll;
+	padding-top: 20px;
 }
 
 .sidenav h3
 {
 	color: #fff;
-}
+	position: fixed;}
 
 .sidenav a
 {
+	margin-top: 30px;
 	padding: 6px;
 	text-decoration: none;
 	font-size: 18px;
@@ -32,5 +51,4 @@
 	margin-left: 270px;
 	margin-top: 200px;
 	padding: 0px 10px;
-	position: relative;
 }
