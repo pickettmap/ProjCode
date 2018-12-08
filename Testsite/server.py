@@ -39,12 +39,12 @@ def upload():
 @app.route("/", methods = ["GET", "POST"])
 def login():
 	if(request.method == "POST"):
-		username = request.form("username")
-		password = request.form("password")
+		username = request.form["username"]
+		password = request.form["password"]
 
 		#If the username doesn't exist, return error
 		if(existingUser(username) == False):
-			print("Hello")
+			return render_template("Login.html", error="Not a username")
 		#If the username does exist, check the password and login
 		else:
 			cur.execute("SELECT * FROM users WHERE username = %s;", [username])
@@ -52,7 +52,9 @@ def login():
 			#If the passwords match
 			if(info[1] == password):
 				session["username"] = username
-				return redirect(url_for("home"))
+				return redirect(url_for("/Images"))
+			else:
+				return render_template("Login.html", error="Wrong password")
 
 	return render_template("Login.html")
 
@@ -60,18 +62,18 @@ def login():
 @app.route("/register", methods = ["GET", "POST"])
 def register():
 	if(request.method == "POST"):
-		username = request.form("username")
-		password = request.form("password")
+		username = request.form["username"]
+		password = request.form["password"]
 
 		#If the username exists, return error
 		if(existingUser(username) == True):
-			print("Hello")
+			return render_template("Resister.html", error="Already an account")
 		#If the username doesn't exist, register
 		else:
 			cur.execute("INSERT INTO users (username, password) VALUES (%s, %s);", [username, password])
 			conn.commit()
 			session["username"] = username
-			return redirect(url_for("home"))
+			return render_template("Register.html", registered="Created an account")
 
 	return render_template("Register.html")
 
@@ -96,7 +98,7 @@ def upload_file():
 	target = os.path.join(UPLOAD_FOLDER, "static/")
 
 	if not os.path.isdir(target):
-    	os.mkdir(target)
+		os.mkdir(target)
 
   	for upload in request.files.getlist("file"):
   		filename = upload.filename

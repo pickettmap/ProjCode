@@ -15,35 +15,34 @@
 			Tagim
 		</div>
 	</div>
-	<form>
-		<div class="container">
-			<div class="jumbotron" id="formbox">
-				<div class="jumbotron-content">
-					<form action="/register" method="post" name="user_Login" id="userlogin">
-						<p id="boxtitle">Register:</p>
-						<div class="form-group">
-							<label for="username">Username:</label>
-							<input type="text" class="form-control" name="username" placeholder="Username">
-						</div>
+	<div class="container">
+		<div class="jumbotron" id="formbox">
+			<div class="jumbotron-content">
+				<form action="/register" method="post" name="user_Login" id="userlogin">
+					<p id="boxtitle">Register:</p>
+					<div class="form-group">
+						<label for="username">Username:</label>
+						<input type="text" class="form-control" name="username" placeholder="Username">
+					</div>
 
-						<div class="form-group">
-							<label for="password">Password:</label>
-							<input type="password" class="form-control" name="password" placeholder="Password">
-						</div>
+					<div class="form-group">
+						<label for="password">Password:</label>
+						<input type="password" class="form-control" name="password" placeholder="Password">
+					</div>
 
-						<div>
-							<button type="submit" id="registerbutton" class="btn btn-secondary btn-large">Submit</button>
-						</div>
-					</form>
-					<form method="get" action="/">
-						<button type="submit" id="loginbutton" class="btn btn-secondary btn-large">Go to Login</button>
-					</form>
-					<p style="text-align: center; color: red" id="errortext">{{ error }}</p>
-					<p style="text-align: center; color: green" id="registeredtext">{{ registered }}</p>
-				</div>
+					<div class="form-group">
+						<button type="submit" id="registerbutton">Register</button>
+					</div>
+				</form>
+				<form method="get" action="/">
+					<button type="submit" id="loginbutton" class="btn btn-secondary btn-large">Go to Login</button>
+				</form>
+				<p style="text-align: center; color: red" id="errortext">{{ error }}</p>
+				<p style="text-align: center; color: green" id="registeredtext">{{ registered }}</p>
 			</div>
 		</div>
-	</form>
+	</div>
+	
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
