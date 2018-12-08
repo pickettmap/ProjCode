@@ -17,7 +17,6 @@
 			Tagim
 		</div>
 	</div>
-	<form>
 		<div class="container">
 			<div class="jumbotron" id="formbox">
 				<div class="jumbotron-content">
@@ -33,19 +32,18 @@
 							<input type="password" class="form-control" name="password" placeholder="Password">
 						</div>
 
-						<div>
-							<input type="submit" id="loginbutton" class="btn btn-secondary btn-large">Submit</input>
+						<div class="form-group">
+							<button type="submit" id="loginbutton">Submit</button>
 						</div>
 					</form>
 
 					<form method="get" action="/register">
-						<input type="submit" id="registerbutton" class="btn btn-secondary btn-large">Go to Register</input>
+						<button type="submit" id="registerbutton" class="btn btn-secondary btn-large">Go to Register</button>
 					</form>
   					<p style="text-align: center; color: red" id="errortext">{{ error }}</p>
 				</div>
 			</div>
 		</div>
-	</form>
 
 </body>
 </html>
