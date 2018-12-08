@@ -33,7 +33,7 @@ def login():
 			cur.execute("SELECT * FROM users WHERE username = %s;", [username])
 			info = cur.fetchone()
 			#If the passwords match
-			if(info[2] == password):
+			if(info[1] == password):
 				session["username"] = username
 				return redirect(url_for("home"))
 
