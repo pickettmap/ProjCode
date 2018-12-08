@@ -76,11 +76,6 @@ def upload_file():
 		tags = request.form("tags")
 		tags = tags.split(",")
 
-		for word in range(len(tags)):
-			(tags[word]) = str((tags[word]).split())
-			print (tags[word])
-
-
 	target = os.path.join(UPLOAD_FOLDER, "static/")
 
 	if not os.path.isdir(target):
