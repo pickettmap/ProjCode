@@ -17,33 +17,34 @@ def existingUser(username):
 	if(len(cur.fetchall()) > 0):
 		return True
 	return False
-	
-#Navigation routing
-@app.route('/Images')
-def images():
-	#If user isn't signed in, redirect
-	if(session["username"] == ""):
-		return redirect(url_for("login"))
-	return render_template("Images.html")
 
 @app.route('/Tags')
 def tags():
 	#If user isn't signed in, redirect
-	if(session["username"] == ""):
+	try:
+		if(session["username"] == ""):
+			return redirect(url_for("login"))
+	except:
 		return redirect(url_for("login"))
 	return render_template("Tags.html")
 
 @app.route('/Search', methods = ["POST", "GET"])
 def searchpage():
 	#If user isn't signed in, redirect
-	if(session["username"] == ""):
+	try:
+		if(session["username"] == ""):
+			return redirect(url_for("login"))
+	except:
 		return redirect(url_for("login"))
 	return render_template("Search.html")
 
 @app.route('/Upload')
 def upload():
 	#If user isn't signed in, redirect
-	if(session["username"] == ""):
+	try:
+		if(session["username"] == ""):
+			return redirect(url_for("login"))
+	except:
 		return redirect(url_for("login"))
 	return render_template("Upload.html")
 
