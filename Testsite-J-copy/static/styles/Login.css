@@ -1,0 +1,80 @@
+#backg
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+    background-image: linear-gradient(180deg, #FFD127 0%, #8D3503 100%);
+}
+#titletext
+{
+	text-align: center;
+	font-size: 10em;
+	font-family: "Marker Felt", "fantasy";
+	color: rgba(0, 0, 0, 0.5);
+}
+
+#boxtitle
+{
+	font-weight: bold;
+}
+
+#formbox
+{
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	border: 1px solid black;
+	width: 40%;
+}
+
+#loginbutton
+{
+	position: absolute;
+	left: 10%;
+	
+	width: 150px;
+	height: 40px;
+	padding: 5px;
+	border-radius: 14px;
+	background: linear-gradient(180deg, #F5A623 0%, #8D3503 166.43%);
+	
+	border-style: none;
+
+	color: black;
+	font-weight: 500;
+	text-align: center;
+	text-decoration: none;
+	font-size: 20px;
+	display: inline-block;
+	
+	cursor: pointer;
+}
+
+#registerbutton
+{
+	position: absolute;
+	right: 10%;
+
+	width: 150px;
+	height: 40px;
+	padding: 5px;
+	border-radius: 14px;
+	background: linear-gradient(180deg, #F5A623 0%, #8D3503 166.43%);
+	
+	border-style: none;
+
+	color: black;
+	font-weight: 500;
+	text-align: center;
+	text-decoration: none;
+	font-size: 20px;
+	display: inline-block;
+	
+	cursor: pointer;
+}
+#userlogin
+{
+	text-align: left;
+	font-size: 1em;
+}

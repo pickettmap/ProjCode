@@ -6,9 +6,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-	<link rel="stylesheet" href="Search.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/Tags.css') }}">
 
-	<title>Search</title>
+	<title>Images</title>
 </head>
 
 <body>
@@ -16,15 +16,16 @@
 	<div class="jumbotron" id="topbar">
 			<h1 id="topbartext">
 				Tagim
-			</h1>
-			<a href="./Login.html" id="logoutlink">Logout</a>
+            </h1>
+            <a href="/Login" id="logoutlink">Logout</a>
 	</div>
 
 	<div class="rectangle" id="currentpage"></div>
 
-	<a href="./Images.html" id="imagesbutton">Images</a>
-	<a href="./Upload.html" id="uploadbutton">Upload</a>
-	<form name="search" action="./Search.html" method="post">
+	<a href="/Images" id="imagesbutton">Images</a>
+	<a href="/Tags" id="tagsbutton">Tags</a>
+	<a href="/Upload" id="uploadbutton">Upload</a>
+	<form name="search" action="/Search" method="post">
 		<textarea class="form-control" name="tags" id="searchbox"></textarea>
 		<button type="submit" id="searchbutton">Search</button>
 	</form>

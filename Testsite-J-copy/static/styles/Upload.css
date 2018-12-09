@@ -22,7 +22,6 @@ body
 	text-align: center;
 }
 
-
 /* Navigation bar CSS */
 
 /*edit to correct page */
@@ -31,7 +30,7 @@ body
 	/* -10 from button position (-10 = border size) */
 	position: absolute;
 	top: 145px;
-	left: 215px;
+	left: 390px;
 
 	/* +20 from button size (-10 = border size)*/
 	width: 170px;
@@ -96,7 +95,7 @@ body
 
 	
 }
-/*
+
 #tagsbutton
 {
 	position: absolute;
@@ -121,12 +120,12 @@ body
 
 	
 }
-*/
+
 #uploadbutton
 {
 	position: absolute;
 	top: 155px;
-	left: 225px;
+	left: 400px;
 
 	width: 150px;
 	height: 40px;

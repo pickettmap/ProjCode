@@ -11,7 +11,7 @@ body
 	/* -10 from button position (-10 = border size) */
 	position: absolute;
 	top: 145px;
-	right: 15px;
+	left: 40px;
 
 	/* +20 from button size (-10 = border size)*/
 	width: 170px;
@@ -106,7 +106,7 @@ body
 {
 	position: absolute;
 	top: 155px;
-	left: 225px;
+	left: 400px;
 
 	width: 150px;
 	height: 40px;
