@@ -79,7 +79,7 @@ def register():
 
 		#If the username exists, return error
 		if(existingUser(username) == True):
-			return render_template("Resister.html", error="Already an account")
+			return render_template("Register.html", error="Already an account")
 		#If the username doesn't exist, register
 		else:
 			cur.execute("INSERT INTO users (username, password) VALUES (%s, %s);", [username, password])
@@ -122,11 +122,13 @@ def upload_file():
 
 			#For every tag insert with picid
 			for tag in tags:
+				tag = tag.strip()
+				tag = tag.lower()
 				cur.execute("INSERT INTO tags (picid, tag) VALUES (%s, %s);", [id, tag])
 			conn.commit()
 
 			#Save image
-			destination = "/".join([target,id + ', ' + session["username"]])
+			destination = "/" + target + str(id[0])
 			upload.save(destination)
 
 	return render_template("Login.html")
