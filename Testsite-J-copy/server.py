@@ -67,7 +67,7 @@ def register():
 
 		#If the username exists, return error
 		if(existingUser(username) == True):
-			return render_template("Resister.html", error="Already an account")
+			return render_template("Register.html", error="Already an account")
 		#If the username doesn't exist, register
 		else:
 			cur.execute("INSERT INTO users (username, password) VALUES (%s, %s);", [username, password])

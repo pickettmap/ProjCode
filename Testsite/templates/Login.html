@@ -36,11 +36,9 @@
 						<button type="submit" id="loginbutton">Login</button>
 					</div>
 				</form>
-
-				<form method="get" action="/register">
-					<button type="submit" id="registerbutton" class="btn btn-secondary btn-large">Go to Register</button>
-				</form>
-				<p style="text-align: center; color: red" id="errortext">{{ error }}</p>
+				<a href="/register" id="registerbutton">Go to Register</a>
+				<br>
+				<p style="text-align: center; color: red; position: absolute; bottom: 0%; left: 38%;" id="errortext">{{ error }}</p>
 			</div>
 		</div>
 	</div>
