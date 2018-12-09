@@ -64,7 +64,7 @@ def login():
 			#If the passwords match
 			if(info[1] == password):
 				session["username"] = username
-				return redirect(url_for("images"))
+				return redirect(url_for("tags"))
 			else:
 				return render_template("Login.html", error="Wrong password")
 
@@ -131,7 +131,7 @@ def upload_file():
 			destination = "/" + target + str(id[0])
 			upload.save(destination)
 
-	return render_template("Login.html")
+	return render_template("Upload.html")
 
 #Location of the image
 @app.route("/upload/<filename>")
