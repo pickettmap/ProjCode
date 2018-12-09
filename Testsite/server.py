@@ -22,29 +22,29 @@ def existingUser(username):
 @app.route('/Images')
 def images():
 	#If user isn't signed in, redirect
-		if(session["username"] == ""):
-			return redirect(url_for("login"))
+	if(session["username"] == ""):
+		return redirect(url_for("login"))
 	return render_template("Images.html")
 
 @app.route('/Tags')
 def tags():
 	#If user isn't signed in, redirect
-		if(session["username"] == ""):
-			return redirect(url_for("login"))
+	if(session["username"] == ""):
+		return redirect(url_for("login"))
 	return render_template("Tags.html")
 
 @app.route('/Search', methods = ["POST", "GET"])
 def searchpage():
 	#If user isn't signed in, redirect
-		if(session["username"] == ""):
-			return redirect(url_for("login"))
+	if(session["username"] == ""):
+		return redirect(url_for("login"))
 	return render_template("Search.html")
 
 @app.route('/Upload')
 def upload():
 	#If user isn't signed in, redirect
-		if(session["username"] == ""):
-			return redirect(url_for("login"))
+	if(session["username"] == ""):
+		return redirect(url_for("login"))
 	return render_template("Upload.html")
 
 #Login page
