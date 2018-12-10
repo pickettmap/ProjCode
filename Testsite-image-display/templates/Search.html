@@ -6,7 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-	<link rel="stylesheet" href="{{ url_for('static', filename='styles/Tags.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/Search.css') }}">
 
 	<title>Images</title>
 </head>
@@ -14,23 +14,22 @@
 <body>
 	<!-- nav bar code begins-->
 	<div class="jumbotron" id="topbar">
-		<h1 id="topbartext">
-			Tagim
-		</h1>
-		<a href="/logout" id="logoutlink">Logout</a>
+			<h1 id="topbartext">
+				Tagim
+            </h1>
+            <a href="/logout" id="logoutlink">Logout</a>
 	</div>
-	
+
 	<div class="rectangle" id="currentpage"></div>
 
 	<a href="/Tags" id="tagsbutton">Tags</a>
 	<a href="/Upload" id="uploadbutton">Upload</a>
-
 	<form name="search" action="/Search" method="post">
 		<textarea class="form-control" name="tags" id="searchbox"></textarea>
 		<button type="submit" id="searchbutton">Search</button>
 	</form>
-	<! -- nav bar code ends -->
+    <! -- nav bar code ends -->
 
-	
+
 </body>
 </html>

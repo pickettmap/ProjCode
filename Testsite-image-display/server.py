@@ -18,15 +18,19 @@ def existingUser(username):
 		return True
 	return False
 
-@app.route('/Tags')
-def tags():
+@app.route('/Tags/<tag>')
+def tags(tag):
 	#If user isn't signed in, redirect
 	try:
 		if(session["username"] == ""):
 			return redirect(url_for("login"))
 	except:
 		return redirect(url_for("login"))
-	return render_template("Tags.html")
+	#currtag=tag. 
+	#usertags = array of tags that user has
+	#srcs = array of full imagepaths that link to the tag
+	# youre gonna have to join tables i think on the sql
+	return render_template("Tags.html", curtag=tag, usertags=usertags, srcs=imgsrcs)
 
 @app.route('/Search', methods = ["POST", "GET"])
 def searchpage():
