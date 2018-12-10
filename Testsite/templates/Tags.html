@@ -33,9 +33,14 @@
 
 	<div id="sidenav">
 		<h3>Tag List</h3>
+		{% if tag=="" %}
+			<a href="" id="curtag">All Images</a>
+		{% else %}
+			<a href="/Tags/" id="notcurrtag">All Images</a>
+		{% endif %}
 		{% for tag in usertags.iteritems() %}
 			{% if tag==curtag %}
-				<a href="/Tags/{{" id="curtag"> {{ tag }}</a>
+				<a href="" id="curtag"> {{ tag }}</a>
 			{% else %}
 				<a href="/Tags/{{ tag }}" id="notcurrtag">{{ tag }}</a>
 			{% endif %}
