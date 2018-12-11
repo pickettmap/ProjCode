@@ -33,27 +33,26 @@
 
 	<div id="sidenav">
 		<h3>Tag List</h3>
-		{% if tag=="" %}
+		{% if curtag == "" %}
 			<a href="" id="curtag">All Images</a>
 		{% else %}
-			<a href="/Tags/" id="notcurrtag">All Images</a>
+			<a href="/Tags" id="notcurtag">All ages</a>
 		{% endif %}
-		{% for tag in usertags.iteritems() %}
-			{% if tag==curtag %}
+		{% for tag in usertags %}
+			{% if tag == curtag %}
 				<a href="" id="curtag"> {{ tag }}</a>
 			{% else %}
-				<a href="/Tags/{{ tag }}" id="notcurrtag">{{ tag }}</a>
+				<a href="/Tags/{{ tag }}" id="notcurtag">{{ tag }}</a>
 			{% endif %}
 		{% endfor %}
 	</div>
 
 	<div class="container" id="picdisplay">
 		<div class="row text-center text-lg-left">
-			{% for imgsrc in srcs.iteritems() %}
+			{% for imgsrc in srcs %}
 				<div class="col-lg-3 col-md-4 col-xs-6">
-					<a href="#" class="d-block mb-4 h-100">
-						<img class="img-fluid img-thumbnail" src={{ imgsrc }} alt="ttp://placehold.it/400x300">
-					</a>
+						<img class="img-fluid img-thumbnail" src="{{ imgsrc }}">
+						<p>{{ imgsrc }}</p>
 				</div>
 			{% endfor %}
     	</div>

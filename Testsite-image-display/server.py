@@ -18,19 +18,40 @@ def existingUser(username):
 		return True
 	return False
 
+@app.route('/Tags/')
 @app.route('/Tags/<tag>')
-def tags(tag):
+def tags(tag=""):
 	#If user isn't signed in, redirect
 	try:
 		if(session["username"] == ""):
 			return redirect(url_for("login"))
 	except:
 		return redirect(url_for("login"))
-	#currtag=tag. 
+	
 	#usertags = array of tags that user has
+	cur.execute("select tag from tags join pictures on tags.picid=pictures.picid where username = %s;", [session["username"]])
+	usertags = cur.fetchall()
+	taglist = []
+	for utag in usertags:
+		ltag = list(utag)
+		stag = ''.join(ltag)
+		taglist.append(stag)
+		utag = ''.join(str(t) for t in utag)
+
 	#srcs = array of full imagepaths that link to the tag
-	# youre gonna have to join tables i think on the sql
-	return render_template("Tags.html", curtag=tag, usertags=usertags, srcs=imgsrcs)
+	if(tag == ""):
+		cur.execute("select distinct on (tags.picid) tags.picid from tags join pictures on tags.picid=pictures.picid where username = %s order by tags.picid;", [session["username"]])
+	else:
+		cur.execute("select distinct on (tags.picid) tags.picid from tags join pictures on tags.picid=pictures.picid where username = %s and tag = %s order by tags.picid;", [session["username"], tag])
+	imgsrcs = cur.fetchall()
+	imgsrclist = []
+	for src in imgsrcs:
+		lsrc = list(src)
+		ssrc = ''.join(str(t) for t in src)
+		ssrc = "/static/" + ssrc
+		imgsrclist.append(ssrc)
+
+	return render_template("Tags.html", curtag=tag, usertags=taglist, srcs=imgsrclist)
 
 @app.route('/Search', methods = ["POST", "GET"])
 def searchpage():
@@ -69,7 +90,7 @@ def login():
 			#If the passwords match
 			if(info[1] == password):
 				session["username"] = username
-				return redirect(url_for("tags"))
+				return redirect(url_for("tags", tag=""))
 			else:
 				return render_template("Login.html", error="Wrong password")
 
@@ -110,6 +131,9 @@ def upload_file():
 		#Get tags
 		tags = request.form["tags"]
 		tags = tags.split(",")
+		for t in tags:
+			if (t == ""):
+				t = "Not Tagged"
 
 		target = os.path.join(UPLOAD_FOLDER, "static/")
 		print(target)
