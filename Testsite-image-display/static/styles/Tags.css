@@ -77,10 +77,11 @@
 }
 #img
 {
-	max-width: 300x;
+	max-width: 300px;
 	max-height: 300px;
 	margin-left: auto;
-  	margin-right: auto;
+	margin-right: auto;
+	width: 40%;
 }
 
 body

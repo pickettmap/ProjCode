@@ -36,7 +36,7 @@
 		{% if curtag == "" %}
 			<a href="" id="curtag">All Images</a>
 		{% else %}
-			<a href="/Tags" id="notcurtag">All ages</a>
+			<a href="/Tags" id="notcurtag">All Images</a>
 		{% endif %}
 		{% for tag in usertags %}
 			{% if tag == curtag %}
@@ -51,7 +51,7 @@
 		<div class="row text-center text-lg-left">
 			{% for imgsrc in srcs %}
 				<div class="col-lg-3 col-md-4 col-xs-6">
-						<img class="img-fluid img-thumbnail" src="{{ imgsrc }}">
+						<img id="img" class="img-fluid img-thumbnail" src="{{ imgsrc }}">
 						<p>{{ imgsrc }}</p>
 				</div>
 			{% endfor %}
