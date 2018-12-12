@@ -29,7 +29,7 @@ def tags(tag=""):
 		return redirect(url_for("login"))
 	
 	#usertags = array of tags that user has
-	cur.execute("select tag from tags join pictures on tags.picid=pictures.picid where username = %s;", [session["username"]])
+	cur.execute("select distinct tags.tag from tags join pictures on tags.picid=pictures.picid where username = %s order by tags.tag;", [session["username"]])
 	usertags = cur.fetchall()
 	taglist = []
 	for utag in usertags:
