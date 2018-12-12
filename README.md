@@ -7,3 +7,5 @@ This app is a photo storage and photo management program. It is designed for the
 
 
 To deploy Tagim, the user must run the command ‘python server.py’. This will initialize the server as a localhost which the user can interact with to utilize the app.
+
+The repo is organized with code in the main directory, with frontend pages (HTML/CSS) located in FrontEnd Pages.
