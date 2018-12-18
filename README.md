@@ -6,6 +6,6 @@ This app is a photo storage and photo management program. It is designed for the
 4. Image searching - The user is capable of searching for images based on the attributed text tags using a search bar presented on the HTML page.
 
 
-To deploy Tagim, the user must run the command ‘python server.py’. This will initialize the server as a localhost which the user can interact with to utilize the app.
+To deploy Tagim, the user must run the command ‘python server.py’ in the Testsite-image-display folder. This will initialize the server as a localhost which the user can interact with to utilize the app.
 
-The repo is organized with code in the main directory, with frontend pages (HTML/CSS) located in FrontEnd Pages.
+The repo is organized with code in the main directory, with frontend pages (HTML/CSS) located in Testsite-image-display. 
